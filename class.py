@@ -5,7 +5,7 @@ class Title:
             self.__title = title
         else:
             raise ValueError
-
+# Проверяем название
     @staticmethod 
     def check_title(title):
         if title:
@@ -33,7 +33,7 @@ class Product(Title):
             self.__cost = cost
         else:
             raise ValueError
-
+# блок проверки наличия каллорий
     @staticmethod
     def check_calories(calories):
         if calories > 0:
@@ -51,16 +51,18 @@ class Product(Title):
             self.__calories = calories
         else:
             raise ValueError
-    
+ # блок проверки наличия себистоимости   
     @staticmethod
     def check_cost(cost):
         if cost > 0:
             return True
         else:
             return False
+
     @property
     def cost(self):
         return self.__cost
+
     @cost.setter
     def cost(self, cost):
         if Product.check_cost(cost):
@@ -73,15 +75,16 @@ class Ingredient:
     def __init__(self, product, weight):
         if Ingredient.check_weight(weight):
             self.product = product
-            self.weight = weight
+            self.__weight = weight
         else:
             raise ValueError
-
+#Высчитывание  калорий и стоимости для каждого ингредиента
     def get_calories(self):
-        return self.weight / 100 * self.product.calories
+        return self.__weight / 100 * self.product.calories
     def get_selfcost(self):
-        return self.weight / 100 * self.product.cost
-    
+        return self.__weight / 100 * self.product.cost
+
+#Блок проверки веса ингредиента     
     @staticmethod
     def check_weight(weight):
         if weight and weight > 0:
@@ -91,6 +94,7 @@ class Ingredient:
     @property
     def weight(self):
         return self.__weight
+
     @weight.setter
     def weight(self, weight):
         if Ingredient.check_weight(weight):
@@ -126,15 +130,14 @@ dough_product = Product('Тесто', 200, 20)
 tomato_product = Product('Помидор', 100, 50)
 cheese_product = Product('Сыр', 100, 120)
 
-# Из продуктов создаем ингредиенты. Для каждого ингредиента указываем продукт, 
-# из которого он состоит и вес продукта
+# Из продуктов создаем ингредиенты. 
 dough_ingredient = Ingredient(dough_product, 300)
 tomato_ingredient = Ingredient(tomato_product, 100)
 cheese_ingredient = Ingredient(cheese_product, 150)
 
 # Из ингредиентов создаем пиццу
 pizza_margarita = Pizza('Маргарита', [dough_ingredient, tomato_ingredient, cheese_ingredient])
-pizza_chessy = Pizza('Сырная',[ dough_ingredient, tomato_ingredient, cheese_ingredient, cheese_ingredient])
-# Выводим экземпляр пиццы
+pizza_chessy = Pizza('Сырная', [ dough_ingredient, tomato_ingredient, cheese_ingredient, cheese_ingredient])
+# Выводим пиццы
 print(pizza_margarita)
 print(pizza_chessy)
