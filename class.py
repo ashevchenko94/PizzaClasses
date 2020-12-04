@@ -87,7 +87,7 @@ class Ingredient:
 #Блок проверки веса ингредиента     
     @staticmethod
     def check_weight(weight):
-        if weight and weight > 0:
+        if weight  > 0:
             return True
         else:
             return False
@@ -131,11 +131,11 @@ tomato_product = Product('Помидор', 100, 50)
 cheese_product = Product('Сыр', 100, 120)
 
 # Из продуктов создаем ингредиенты. 
-dough_ingredient = Ingredient(dough_product, 300)
+dough_ingredient = Ingredient(dough_product, 400)
 tomato_ingredient = Ingredient(tomato_product, 100)
 cheese_ingredient = Ingredient(cheese_product, 150)
 
-# Из ингредиентов создаем пиццу
+# Из  ингредиентов создаем пиццу
 pizza_margarita = Pizza('Маргарита', [dough_ingredient, tomato_ingredient, cheese_ingredient])
 pizza_chessy = Pizza('Сырная', [ dough_ingredient, tomato_ingredient, cheese_ingredient, cheese_ingredient])
 # Выводим пиццы
